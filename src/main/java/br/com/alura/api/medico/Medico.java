@@ -29,8 +29,11 @@ public class Medico {
 	@Embedded
 	private Endereco endereco;
 	
+	private Boolean ativo;
+	
 	// Construtor
 	public Medico(DadosCadastroMedico dados) {
+		this.ativo = true;
 		this.nome = dados.nome();
 		this.email = dados.email();
 		this.telefone = dados.telefone();
@@ -38,7 +41,7 @@ public class Medico {
 		this.especialidade = dados.especialidade();
 		this.endereco = new Endereco(dados.endereco());
 	}
-	
+
 	public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
 		if(dados.nome() != null) {
 			this.nome = dados.nome();
@@ -50,5 +53,9 @@ public class Medico {
 			this.endereco.atualizarInformacoes(dados.endereco());
 		}
 	}
-
+	
+	// Método para desativar médicos
+	public void desativarMedicos(Long id) {
+		this.ativo = false;
+	}
 }
