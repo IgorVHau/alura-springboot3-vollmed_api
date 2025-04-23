@@ -53,6 +53,7 @@ public class MedicoController {
 		//return repository.findAll().stream().map(DadosListagemMedico::new).toList();
 		//return repository.findAll(paginacao).map(DadosListagemMedico::new);
 		var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
+		
 		return ResponseEntity.ok(page);
 	}
 	
@@ -73,6 +74,13 @@ public class MedicoController {
 		medico.desativarMedicos(id);
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity detalhar(@PathVariable Long id) {
+		Medico medico = repository.getReferenceById(id);
+		
+		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 
 }
