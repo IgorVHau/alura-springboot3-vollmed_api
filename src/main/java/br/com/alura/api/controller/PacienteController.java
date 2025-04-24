@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.alura.api.paciente.DadosCadastroPaciente;
 import br.com.alura.api.paciente.DadosListagemPaciente;
 import br.com.alura.api.paciente.Paciente;
+import br.com.alura.api.paciente.PacienteRepository;
 
 @RestController
 @RequestMapping("pacientes")
