@@ -44,5 +44,9 @@ public class Paciente {
 			this.endereco.atualizarInformacoes(dados.endereco());
 		}
 	}
+	
+	public void desativarPaciente(Long id) {
+		this.ativo = false;
+	}
 
 }
