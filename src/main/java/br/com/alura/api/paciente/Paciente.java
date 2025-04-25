@@ -48,5 +48,9 @@ public class Paciente {
 	public void desativarPaciente(Long id) {
 		this.ativo = false;
 	}
+	
+	public void ativarPaciente(Long id) {
+		this.ativo = true;
+	}
 
 }
