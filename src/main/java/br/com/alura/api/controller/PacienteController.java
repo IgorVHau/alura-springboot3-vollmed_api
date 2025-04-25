@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;*/
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.alura.api.paciente.DadosAtualizacaoPaciente;
 import br.com.alura.api.paciente.DadosCadastroPaciente;
 import br.com.alura.api.paciente.DadosDetalhamentoPaciente;
 import br.com.alura.api.paciente.DadosListagemPaciente;
 import br.com.alura.api.paciente.Paciente;
 import br.com.alura.api.paciente.PacienteRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("pacientes")
@@ -43,5 +45,13 @@ public class PacienteController {
 		return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
 	}
 	
+	@PutMapping
+	@Transactional
+	public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados) {
+		var paciente = repository.getReferenceById(dados.id());
+		paciente.atualizarInformacoes(dados);
+		
+		return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
+	}
 	
 }
