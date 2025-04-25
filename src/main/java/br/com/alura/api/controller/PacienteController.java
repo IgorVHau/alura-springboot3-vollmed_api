@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +44,10 @@ public class PacienteController {
 	
 	@GetMapping
 	//public List<DadosListagemPaciente> listar(Paciente paciente) {
-	public Page<DadosListagemPaciente> listar(Pageable paginacao) {
+	public Page<DadosListagemPaciente> listar(
+			@PageableDefault(sort = {"nome"}, size = 10) 
+			@SortDefault(sort = "nome", direction = Sort.Direction.ASC)
+			Pageable paginacao) {
 		return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
 	}
 	
