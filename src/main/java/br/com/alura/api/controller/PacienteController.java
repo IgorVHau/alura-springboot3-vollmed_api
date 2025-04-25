@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;*/
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.alura.api.paciente.DadosCadastroPaciente;
+import br.com.alura.api.paciente.DadosDetalhamentoPaciente;
 import br.com.alura.api.paciente.DadosListagemPaciente;
 import br.com.alura.api.paciente.Paciente;
 import br.com.alura.api.paciente.PacienteRepository;
@@ -33,7 +34,7 @@ public class PacienteController {
 		
 		var uri = uribuilder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
 		
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(new DadosDetalhamentoPaciente(paciente));
 	}
 	
 	@GetMapping
