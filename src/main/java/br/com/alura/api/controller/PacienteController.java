@@ -3,6 +3,8 @@ package br.com.alura.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +37,10 @@ public class PacienteController {
 	}
 	
 	@GetMapping
-	public List<DadosListagemPaciente> listar(Paciente paciente) {
-		return repository.findAll().stream().map(DadosListagemPaciente::new).toList();
+	//public List<DadosListagemPaciente> listar(Paciente paciente) {
+	public Page<DadosListagemPaciente> listar(Pageable paginacao) {
+		return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
 	}
-
+	
+	
 }
