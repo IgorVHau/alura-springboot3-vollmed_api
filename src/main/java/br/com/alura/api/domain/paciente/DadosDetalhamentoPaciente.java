@@ -1,6 +1,6 @@
-package br.com.alura.api.paciente;
+package br.com.alura.api.domain.paciente;
 
-import br.com.alura.api.endereco.Endereco;
+import br.com.alura.api.domain.endereco.Endereco;
 
 public record DadosDetalhamentoPaciente(
 		Long id, 

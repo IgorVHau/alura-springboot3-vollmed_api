@@ -1,4 +1,4 @@
-package br.com.alura.api.endereco;
+package br.com.alura.api.domain.endereco;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

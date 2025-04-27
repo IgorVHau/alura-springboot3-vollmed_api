@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;*/
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.alura.api.paciente.DadosAtualizacaoPaciente;
-import br.com.alura.api.paciente.DadosCadastroPaciente;
-import br.com.alura.api.paciente.DadosDetalhamentoPaciente;
-import br.com.alura.api.paciente.DadosListagemPaciente;
-import br.com.alura.api.paciente.Paciente;
-import br.com.alura.api.paciente.PacienteRepository;
+import br.com.alura.api.domain.paciente.DadosAtualizacaoPaciente;
+import br.com.alura.api.domain.paciente.DadosCadastroPaciente;
+import br.com.alura.api.domain.paciente.DadosDetalhamentoPaciente;
+import br.com.alura.api.domain.paciente.DadosListagemPaciente;
+import br.com.alura.api.domain.paciente.Paciente;
+import br.com.alura.api.domain.paciente.PacienteRepository;
 import jakarta.validation.Valid;
 
 @RestController

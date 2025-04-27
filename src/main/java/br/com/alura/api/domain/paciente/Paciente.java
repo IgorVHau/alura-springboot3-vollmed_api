@@ -1,48 +1,39 @@
-package br.com.alura.api.medico;
+package br.com.alura.api.domain.paciente;
 
-import br.com.alura.api.endereco.Endereco;
+import br.com.alura.api.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
 
-// Classe JPA
-@Table(name = "medicos")
-@Entity(name = "Medico")
-// Lombok
+@Table(name = "pacientes")
+@Entity(name = "Paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Paciente {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome; 
+	private String nome;
 	private String email;
 	private String telefone;
-	private String crm; 
-	//private Especialidade especialidade;
-	//private Endereco endereco;
-	
-	@Enumerated(EnumType.STRING)
-	private Especialidade especialidade;
+	private String cpf;
 	
 	@Embedded
 	private Endereco endereco;
-	
-	private Boolean ativo;
+	private boolean ativo;
 	
 	// Construtor
-	public Medico(DadosCadastroMedico dados) {
-		this.ativo = true;
+	public Paciente(DadosCadastroPaciente dados) {
 		this.nome = dados.nome();
 		this.email = dados.email();
 		this.telefone = dados.telefone();
-		this.crm = dados.crm();
-		this.especialidade = dados.especialidade();
+		this.cpf = dados.cpf();
 		this.endereco = new Endereco(dados.endereco());
+		this.ativo = true;
 	}
-
-	public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
+	
+	public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
 		if(dados.nome() != null) {
 			this.nome = dados.nome();
 		}
@@ -54,8 +45,12 @@ public class Medico {
 		}
 	}
 	
-	// Método para desativar médicos
-	public void desativarMedicos(Long id) {
+	public void desativarPaciente(Long id) {
 		this.ativo = false;
 	}
+	
+	public void ativarPaciente(Long id) {
+		this.ativo = true;
+	}
+
 }

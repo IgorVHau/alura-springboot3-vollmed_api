@@ -1,4 +1,4 @@
-package br.com.alura.api.medico;
+package br.com.alura.api.domain.medico;
 
 import org.springframework.data.domain.Page;
 //import org.hibernate.query.Page;

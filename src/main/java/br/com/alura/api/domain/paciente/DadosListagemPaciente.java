@@ -1,4 +1,4 @@
-package br.com.alura.api.paciente;
+package br.com.alura.api.domain.paciente;
 
 import jakarta.validation.constraints.NotBlank;
 
