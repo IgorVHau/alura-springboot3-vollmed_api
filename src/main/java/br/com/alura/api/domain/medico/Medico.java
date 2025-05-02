@@ -1,6 +1,6 @@
-package br.com.alura.api.medico;
+package br.com.alura.api.domain.medico;
 
-import br.com.alura.api.endereco.Endereco;
+import br.com.alura.api.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
 

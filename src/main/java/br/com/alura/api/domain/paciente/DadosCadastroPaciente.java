@@ -1,7 +1,7 @@
-package br.com.alura.api.paciente;
+package br.com.alura.api.domain.paciente;
 
-import br.com.alura.api.endereco.DadosEndereco;
 import jakarta.validation.constraints.*;
+import br.com.alura.api.domain.endereco.DadosEndereco;
 import jakarta.validation.*;
 
 public record DadosCadastroPaciente(
