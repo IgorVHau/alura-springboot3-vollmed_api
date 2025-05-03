@@ -7,6 +7,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 
 import br.com.alura.api.domain.usuario.DadosAutenticacao;
+import br.com.alura.api.domain.usuario.Usuario;
+import br.com.alura.api.infra.security.DadosTokenJWT;
+import br.com.alura.api.infra.security.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -16,12 +19,16 @@ public class AutenticacaoController {
 	@Autowired
 	private AuthenticationManager manager;
 	
+	@Autowired
+	private TokenService tokenService;
+	
 	@PostMapping
 	public ResponseEntity logar(@RequestBody @Valid DadosAutenticacao dados) {
-		var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-		var auth = manager.authenticate(token);
+		var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+		var auth = manager.authenticate(authenticationToken);
+		var tokenJWT = tokenService.gerarToken((Usuario) auth.getPrincipal());
 		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
 	}
 
 }
